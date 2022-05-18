@@ -4,6 +4,7 @@ const server = require("http").createServer(app);
 const cors = require("cors");
 const authRoute = require("./app/routes/auth");
 const usersRoute = require("./app/routes/users");
+const conversationsRoute = require("./app/routes/conversations");
 
 app.use(express.json());
 
@@ -39,6 +40,7 @@ db.mongoose
 
   app.use("/api/auth", authRoute);
   app.use("/api/users", usersRoute);
+  app.use("/api/conversations", conversationsRoute);
 
   app.get("/", (req, res) => {
     res.send('Server is running.')
