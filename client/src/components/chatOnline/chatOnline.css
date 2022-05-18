@@ -3,7 +3,7 @@
     align-items: center;
     font-weight:  500;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 .chatOnlineImg {
@@ -22,8 +22,8 @@
 
 .chatOnlineBadge {
     position:absolute;
-    width: 10px;
-    height: 10px;
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
     background-color: rgb(78, 233, 78);
     top: 2px;
