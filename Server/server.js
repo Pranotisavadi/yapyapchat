@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const authRoute = require("./app/routes/auth");
 const usersRoute = require("./app/routes/users");
+const conversationsRoute = require("./app/routes/conversations");
 
 app.use(express.json());
 
@@ -28,6 +29,7 @@ db.mongoose
 
   app.use("/api/auth", authRoute);
   app.use("/api/users", usersRoute);
+  app.use("/api/conversations", conversationsRoute);
 
   const PORT = process.env.PORT || 8000;
   app.listen(PORT, () => {
