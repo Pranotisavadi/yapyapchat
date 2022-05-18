@@ -5,6 +5,7 @@ const cors = require("cors");
 const authRoute = require("./app/routes/auth");
 const usersRoute = require("./app/routes/users");
 const conversationsRoute = require("./app/routes/conversations");
+const messagesRoute = require("./app/routes/messages");
 
 app.use(express.json());
 
@@ -41,6 +42,8 @@ db.mongoose
   app.use("/api/auth", authRoute);
   app.use("/api/users", usersRoute);
   app.use("/api/conversations", conversationsRoute);
+  app.use("/api/messages", messagesRoute);
+
 
   app.get("/", (req, res) => {
     res.send('Server is running.')
