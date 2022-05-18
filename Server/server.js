@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const authRoute = require("./app/routes/auth");
+const usersRoute = require("./app/routes/users");
 
 app.use(express.json());
 
@@ -10,6 +11,7 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
   const db = require("./app/models");
+
 
 db.mongoose
   .connect(db.url, {
@@ -25,6 +27,7 @@ db.mongoose
   });
 
   app.use("/api/auth", authRoute);
+  app.use("/api/users", usersRoute);
 
   const PORT = process.env.PORT || 8000;
   app.listen(PORT, () => {
