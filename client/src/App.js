@@ -4,6 +4,8 @@ import Navbar from './components/navbar/Navbar';
 import { createContext, useState } from "react";
 import ReactSwitch from "react-switch";
 
+//just to test push something to github//
+
 export const ThemeContext = createContext(null);
 
 function App() {
