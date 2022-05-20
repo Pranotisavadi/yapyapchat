@@ -11,7 +11,12 @@ function LeftBar() {
         <div  className='chatMenu'>
         <div className="chatMenuWrapper">
         <input placeholder="Search for friends" className="chatMenuInput" />
-        <Groups />
+        
+          <Groups />
+        
+          
+       
+       
         </div>
 
         </div>

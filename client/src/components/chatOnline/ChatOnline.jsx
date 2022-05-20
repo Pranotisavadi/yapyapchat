@@ -1,7 +1,9 @@
 import React from 'react'
 import './chatOnline.css';
+import axios from "axios";
 
 export default function ChatOnline() {
+  
   return (
     <div className='chatOnline'>
         <div className='chatOnlineFriend'>
