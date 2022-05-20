@@ -23,9 +23,7 @@ function Navbar() {
         </div>
       </div>
       <div className="topbarRight">
-        <div className="topbarLinks">
-          <span className="topbarLink">Login</span>
-        </div>
+        
         <div className="topbarIcons">
           <div className="topbarIconItem">
             <Person />
@@ -42,6 +40,9 @@ function Navbar() {
         </div>
         <img src="https://images.pexels.com/photos/10116751/pexels-photo-10116751.jpeg?cs=srgb&dl=pexels-photoalexandru-10116751.jpg&fm=jpg" alt="" className="topbarImg"/>
       </div>
+      {/* <div className="topbarLinks">
+          <span className="topbarLink">Login</span>
+        </div> */}
     </div>
   )
 }
