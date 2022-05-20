@@ -1,14 +1,18 @@
 import React from 'react'
 import "./navbar.css";
-import {Search, Person, Chat, Notifications} from "@mui/icons-material"
+import {Search, Person, Chat, Notifications} from "@mui/icons-material";
+
 
 
 function Navbar() {
+
+
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
         <span className="logo">YapYap</span>
       </div>
+      
       <div className="topbarCenter">
         <div className="searchbar">
           <Search className="searchIcon" />
