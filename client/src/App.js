@@ -1,15 +1,22 @@
 import './App.css';
-import LeftBar from './components/leftbar/LeftBar';
-import Navbar from './components/navbar/Navbar';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Login from './pages/Login'
+import Register from './pages/Register'
+import HomeChat from './pages/HomeChat';
+import VideoChat from './pages/VideoChat';
 
 function App() {
   return (
-    <>
-    <Navbar />
-    <div className='leftSide'>
-      <LeftBar />
-      </div> 
-    </>
+    <BrowserRouter>
+      <Routes>
+          <Route exact path="/" element={<Login />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/home" element={<HomeChat />} />
+          <Route path="/video" element={<VideoChat />} />
+      </Routes>
+    </BrowserRouter>
+  
   );
 }
 
