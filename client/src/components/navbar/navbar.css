@@ -52,18 +52,22 @@
     flex: 4;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: right;
     color: white;
+    padding-right: 20px;
   }
   
-  .topbarLink {
+  /* .topbarLink {
     margin-right: 10px;
     font-size: 14px;
     cursor: pointer;
-  }
+    color: white;
+    padding-left: 10px;
+  } */
   
   .topbarIcons {
     display: flex;
+    padding-right: 20px;
   }
   
   .topbarIconItem {
