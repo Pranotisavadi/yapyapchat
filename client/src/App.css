@@ -2,3 +2,55 @@
   display: flex;
   width: 100%;
 }
+
+#light {
+  background-color: #f3ebf6;
+}
+
+#dark {
+  background-color: rgb(1, 71, 71);
+}
+
+.switch {
+  display: flex;
+  height: 40px;
+  padding-left: 15px;
+  padding-top: 10px;
+}
+
+#light .switch label {
+  color: black;
+}
+
+#dark .switch label {
+  color: white;
+}
+
+label {
+  padding:5px;
+}
+
+#light .conversationName {
+  color: black;
+}
+
+#dark .conversationName {
+  color: white;
+}
+
+
+#light .messageBottom {
+  color: black;
+}
+
+#dark .messageBottom {
+  color: white;
+}
+
+#light .chatOnlineName {
+  color: black;
+}
+
+#dark .chatOnlineName {
+  color: white;
+}
