@@ -19,7 +19,11 @@
     font-weight: bold;
     color: white;
     cursor: pointer;
+    font-family:'Courier New', Courier, monospace;
+    
   }
+  
+
   
   .topbarCenter {
     flex: 5;
