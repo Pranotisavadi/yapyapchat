@@ -1,30 +1,63 @@
 import React from 'react'
+import { useState } from 'react';
+import axios from 'axios';
 
-function Register() {
+const Register= () => {
+    const [username, setUsername] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [bug, setBug] = useState(false)
+
+
+    
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        // setBug(false);
+        // console.log("Register button clicked")
+    try{
+       
+        const res = await axios.post("/register",{
+             username, email, password
+         });
+         res.data && window.location.replace("/login");
+    }catch(err){
+        setBug(true);
+    }     
+
+};
+  
+
     return (
-        <form>
+            <div className="register">
             <h3>Register</h3>
-            <div className="form-group">
-                <label>First name</label>
-                <input type="text" className="form-control" placeholder="First name" />
-            </div>
-            <div className="form-group">
-                <label>Last name</label>
-                <input type="text" className="form-control" placeholder="Last name" />
-            </div>
-            <div className="form-group">
-                <label>Email</label>
-                <input type="email" className="form-control" placeholder="Enter email" />
-            </div>
-            <div className="form-group">
-                <label>Password</label>
-                <input type="password" className="form-control" placeholder="Enter password" />
-            </div>
-            <button type="submit" className="btn btn-dark btn-lg btn-block">Register</button>
+            <form onSubmit={handleSubmit} className="form-control" >           
+            {/* <label>First name</label>
+            <input type="text"  placeholder="First name" />
+            
+            <label>Last name</label>
+            <input type="text"  placeholder="Last name" /> */}
+
+            <label>Username</label>
+            <input type="text" placeholder="Enter your username .." onChange={e => setUsername(e.target.value)}></input>
+           
+            <label>Email</label>
+            <input type="email" placeholder="Enter email" onChange={e => setEmail(e.target.value)} />
+           
+            <label>Password</label>
+            <input type="password"  placeholder="Enter password"  onChange={e => setPassword(e.target.value)}/>
+
+           <button className='btn btn-dark btn-lg btn-block' type="submit">Register</button>
+            </form>
+            
             <p className="forgot-password text-right">
                 Already registered <a href="./Login">log in?</a>
             </p>
-        </form>
+            
+          
+            {bug ? (<h3 style={{color:"red", marginTop:"10px"}}>Something went Wrong! Try Again.</h3>): null}
+            </div>                     
+            
+      
     )
 }
 
