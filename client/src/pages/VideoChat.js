@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Grid, Typography, Paper } from '@mui/material';
 import { SocketContext } from '../SocketContext';
 import { styled } from '@mui/material/styles';
+import VideoNav from '../components/videoChat/VideoNav';
 
 const useStyles = styled((theme) => ({
     video: {
@@ -29,6 +30,7 @@ function VideoChat() {
 
   return (
       <>
+      <VideoNav />
       <Grid container className={classes.gridContainer}>
       {stream && (
         <Paper className={classes.paper}>

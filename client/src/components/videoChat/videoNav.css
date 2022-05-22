@@ -1,0 +1,55 @@
+.video-nav-container {
+    height: 50px;
+    width: 100%;
+    background-color:darkcyan;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    border-top: 2px solid black;
+  }
+
+.leftSide {
+    flex: 6;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    color: white;
+    padding-left: 20px;
+}
+
+
+.left-icons-container {
+    display: flex;
+    padding-right: 20px;
+}
+
+.video-nav-item {
+    margin-right: 15px;
+    cursor: pointer;
+    position: relative;
+}
+    
+.rightSide {
+    flex: 6;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    color: white;
+    padding-right: 20px;
+}
+
+.right-icons-container {
+    display: flex;
+    padding-left: 40px;
+}
+
+.end-call-btn {
+    align-items: center;
+    background-color: red;
+    color: white;
+    border-radius: 15%;
+    margin-top: -5px;
+    cursor: pointer;
+}
