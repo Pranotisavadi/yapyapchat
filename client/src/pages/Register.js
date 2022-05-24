@@ -45,7 +45,7 @@ const Register= () => {
             <input type="email" placeholder="Enter email" onChange={e => setEmail(e.target.value)} />
            
             <label>Password</label>
-            <input type="password"  placeholder="Enter password"  onChange={e => setPassword(e.target.value)}/>
+            <input type="password" placeholder="Enter password"  onChange={e => setPassword(e.target.value)}/>
 
            <button className='btn btn-dark btn-lg btn-block' type="submit">Register</button>
             </form>

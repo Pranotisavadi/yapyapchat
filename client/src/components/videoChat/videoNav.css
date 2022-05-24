@@ -25,9 +25,10 @@
 }
 
 .right-side-panel {
-    background-color:darkcyan;
+    background-color:rgb(55, 56, 56);
     flex: 1.5;
     height: 100%;
+    bottom: 100px;
 }
 
 .topSide {
