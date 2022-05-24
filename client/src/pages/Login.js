@@ -25,16 +25,16 @@ function Login() {
             <div className='loginContainer'>
       <span className="loginTitle">Login</span>
       <form className="loginForm" onSubmit={handleClick}>
-        <label><b>Username</b></label>
+        <label>Username</label>
         <input className="loginInput" type="text" required placeholder="Enter your username..." ref={username}/><br/>
-        <label><b>Password</b></label>
+        <label>Password</label>
         <input className="loginInput" 
         type="password" 
         required 
         placeholder="Enter your password..."
         minLength="6"
         ref={password}/>
-       <button type="submit" className="loginButton"><b>Login</b></button>
+       <button type="submit" className="loginButton">Login</button>
       </form>
         <button className="loginRegisterButton"><a href="./register">Register</a></button>
         </div>
