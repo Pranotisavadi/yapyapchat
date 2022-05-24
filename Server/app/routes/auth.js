@@ -15,6 +15,7 @@ router.post("/register", async (req, res) =>{
         })
             const user = await newUser.save();
             res.status(200).json(user);
+            console.log("user not found", user)
 
     }catch(err){
         console.log(err);

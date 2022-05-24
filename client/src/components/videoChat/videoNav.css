@@ -1,28 +1,39 @@
 .video-nav-container {
-    height: 50px;
+    height: calc(100vh - 70px);
     width: 100%;
-    background-color:darkcyan;
     display: flex;
     align-items: center;
     position: sticky;
     top: 0;
     z-index: 999;
     border-top: 2px solid black;
-  }
-
-.leftSide {
-    flex: 6;
-    display: flex;
-    align-items: center;
-    justify-content: left;
-    color: white;
-    padding-left: 20px;
 }
 
+.grid-container {
+    justify-content: center;
+    flex: 10.5;
+}
 
-.left-icons-container {
-    display: flex;
-    padding-right: 20px;
+.video {
+    width: 650px;
+}
+
+.paper {
+    padding: 10px;
+    border: 2px solid black;
+    margin: 10px;
+}
+
+.right-side-panel {
+    background-color:darkcyan;
+    flex: 1.5;
+    height: 100%;
+}
+
+.topSide {
+    justify-content: top;
+    color: white;
+
 }
 
 .video-nav-item {
@@ -31,17 +42,13 @@
     position: relative;
 }
     
-.rightSide {
-    flex: 6;
-    display: flex;
-    align-items: center;
-    justify-content: right;
+.bottomSide {
+    justify-content: bottom;
     color: white;
-    padding-right: 20px;
 }
 
 .right-icons-container {
-    display: flex;
+    bottom: 0;
     padding-left: 40px;
 }
 
