@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const server = require("http").createServer(app);
+const { Server } = require("socket.io");
 const cors = require("cors");
 const authRoute = require("./app/routes/auth");
 const usersRoute = require("./app/routes/users");
@@ -13,14 +14,10 @@ app.use(express.json());
 //     console.log("Backend is running")
 // })
 
-const io = require("socket.io")(server, {
-  cors: {
-    origin: "*",
-    method: ["GET", "POST"],
-  } 
-});
+const io = new Server(server);
 
-app.use(cors());
+
+app.use(cors({origin: "http://localhost:3000", credentials :true}))
 
 app.use(express.urlencoded({ extended: true }));
   const db = require("./app/models");
