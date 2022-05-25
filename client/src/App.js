@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, } from 'react-router-dom'
-import Login from './pages/Login'
+import Login from './pages/Log'
 import Register from './pages/Register'
 import HomeChat from './pages/HomeChat';
 import VideoChat from './pages/VideoChat';
