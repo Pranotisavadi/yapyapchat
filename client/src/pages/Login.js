@@ -41,5 +41,28 @@
 //     </div>
 //     )
 // }
+//   console.log(user)
+//     return (
+//         <div className="login">
+//             <h1>YapYap</h1>
+//             <div className='loginContainer'>
+//       <span className="loginTitle">Login</span>
+//       <form className="loginForm" onSubmit={handleClick}>
+//         <label>Username</label>
+//         <input className="loginInput" type="text" required placeholder="Enter your username..." ref={username}/><br/>
+//         <label>Password</label>
+//         <input className="loginInput" 
+//         type="password" 
+//         required 
+//         placeholder="Enter your password..."
+//         minLength="6"
+//         ref={password}/>
+//        <button type="submit" className="loginButton">Login</button>
+//       </form>
+//         <button className="loginRegisterButton"><a href="./register">Register</a></button>
+//         </div>
+//     </div>
+//     )
+// }
 
-// export default Login;
+// // export default Login;
