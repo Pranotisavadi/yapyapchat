@@ -1,0 +1,63 @@
+.video-nav-container {
+    height: calc(100vh - 70px);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    border-top: 2px solid black;
+}
+
+.grid-container {
+    justify-content: center;
+    flex: 10.5;
+}
+
+.video {
+    width: 650px;
+}
+
+.paper {
+    padding: 10px;
+    border: 2px solid black;
+    margin: 10px;
+}
+
+.right-side-panel {
+    background-color:rgb(55, 56, 56);
+    flex: 1.5;
+    height: 100%;
+    bottom: 100px;
+}
+
+.topSide {
+    justify-content: top;
+    color: white;
+
+}
+
+.video-nav-item {
+    margin-right: 15px;
+    cursor: pointer;
+    position: relative;
+}
+    
+.bottomSide {
+    justify-content: bottom;
+    color: white;
+}
+
+.right-icons-container {
+    bottom: 0;
+    padding-left: 40px;
+}
+
+.end-call-btn {
+    align-items: center;
+    background-color: red;
+    color: white;
+    border-radius: 15%;
+    margin-top: -5px;
+    cursor: pointer;
+}

@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import '../App.css';
 import axios from 'axios';
+import '../App.css'
 
 const Register= () => {
     const [username, setUsername] = useState("")
@@ -21,9 +22,9 @@ const Register= () => {
              username, email, password
          });
          res.data && window.location.replace("/login");
-    }catch(err){
-        setBug(true);
-    }     
+        }catch(err){
+            setBug(true);
+        }     
 
 };
   
@@ -41,13 +42,13 @@ const Register= () => {
             <input type="text"  placeholder="Last name" /> */}
 
             <label>Username</label>
-            <input className="registerInput" type="text" placeholder="Enter your username .." onChange={e => setUsername(e.target.value)}></input>
+            <input className="registerInput" type="text" placeholder="Enter your username .." autoComplete="username" onChange={e => setUsername(e.target.value)}></input>
            
             <label>Email</label>
-            <input className="registerInput" type="email" placeholder="Enter email" onChange={e => setEmail(e.target.value)} />
+            <input className="registerInput" type="email" placeholder="Enter email" autoComplete="email" onChange={e => setEmail(e.target.value)} />
            
             <label>Password</label>
-            <input className="registerInput" type="password"  placeholder="Enter password"  onChange={e => setPassword(e.target.value)}/>
+            <input className="registerInput" type="password"  placeholder="Enter password" autoComplete="new-password"  onChange={e => setPassword(e.target.value)}/>
 
            <button className='registerButton' type="submit">Register</button>
             </form>
