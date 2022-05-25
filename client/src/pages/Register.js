@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
+import '../App.css';
 import axios from 'axios';
 import '../App.css'
 
@@ -21,17 +22,19 @@ const Register= () => {
              username, email, password
          });
          res.data && window.location.replace("/login");
-    }catch(err){
-        setBug(true);
-    }     
+        }catch(err){
+            setBug(true);
+        }     
 
 };
   
 
     return (
             <div className="register">
-            <h3>Register</h3>
-            <form onSubmit={handleSubmit} className="form-control" >           
+            <h1>YapYap</h1>
+            <div className='registerContainer'>
+            <span className="registerTitle">Register</span>
+            <form onSubmit={handleSubmit} className="registerForm" >           
             {/* <label>First name</label>
             <input type="text"  placeholder="First name" />
             
@@ -39,23 +42,24 @@ const Register= () => {
             <input type="text"  placeholder="Last name" /> */}
 
             <label>Username</label>
-            <input type="text" placeholder="Enter your username .." onChange={e => setUsername(e.target.value)}></input>
+            <input className="registerInput" type="text" placeholder="Enter your username .." autoComplete="username" onChange={e => setUsername(e.target.value)}></input>
            
             <label>Email</label>
-            <input type="email" placeholder="Enter email" onChange={e => setEmail(e.target.value)} />
+            <input className="registerInput" type="email" placeholder="Enter email" autoComplete="email" onChange={e => setEmail(e.target.value)} />
            
             <label>Password</label>
-            <input type="password" placeholder="Enter password"  onChange={e => setPassword(e.target.value)}/>
+            <input className="registerInput" type="password"  placeholder="Enter password" autoComplete="new-password"  onChange={e => setPassword(e.target.value)}/>
 
-           <button className='btn btn-dark btn-lg btn-block' type="submit">Register</button>
+           <button className='registerButton' type="submit">Register</button>
             </form>
             
-            <p className="forgot-password text-right">
+            <p className="registerLoginButton">
                 Already registered <a href="./Login">log in?</a>
             </p>
             
           
             {bug ? (<h3 style={{color:"red", marginTop:"10px"}}>Something went Wrong! Try Again.</h3>): null}
+            </div>
             </div>                     
             
       

@@ -20,7 +20,6 @@ router.post("/register", async (req, res) =>{
         console.log(err);
         res.status(500).json(err);
     }
-    console.log("new User: " + user)
 })
 
 
