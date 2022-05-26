@@ -4,7 +4,7 @@ import '../App.css';
 import axios from 'axios';
 import '../App.css'
 
-const Register= () => {
+const Register = () => {
     const [username, setUsername] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -66,4 +66,4 @@ const Register= () => {
     )
 }
 
-export default Register
+export default Register;

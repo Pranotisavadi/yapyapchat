@@ -9,11 +9,11 @@ const Login = () => {
   const {setAuth} = useContext(AuthContext)
 
 
-  const username = useRef();
+  const user = useRef();
   // const errRef = useRef();
 
-  const [user, setUser] = useState('');
-  const [pwd, setPwd] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [errMsg, setErrMsg] = useState('');
   const [success, setSuccess] = useState(false);
 
@@ -22,25 +22,25 @@ const Login = () => {
   // },[])
 
   useEffect(() => {
-      setErrMsg('');},[user,pwd])
+      setErrMsg('');},[username,password])
 
   const handleClick = async (e) =>{
     e.preventDefault();
 
     try{
-      const response = await axios.post(LOGIN_URL, JSON.stringify({user, pwd}), {
+      const response = await axios.post(LOGIN_URL, { username, password }, {
         headers: {'Content-Type' : 'application/json'},
         withCredentials: true,
       }
       );
-      console.log(JSON.stringify(response?.data));
-      console.log(JSON.stringify(response));
+      console.log(response?.data);
+      console.log(response);
 
-      setAuth({user, pwd});
+      setAuth({username, password});
      
 
-      setUser("");
-      setPwd("");
+      setUsername("");
+      setPassword("");
       setSuccess(true);
 
     }catch (err){
@@ -67,7 +67,7 @@ const Login = () => {
                <h1>You are logged in!</h1>
                <br />
                <p>
-                   <a href="#"> Go to Home</a>
+                   <a href="/homechat"> Go to Home</a>
                </p>
            </section>
 
@@ -81,23 +81,25 @@ const Login = () => {
 
             <label><b>Username</b></label>
             <input className="loginInput"
-            type="text" 
+            type="text"
+            autoComplete="username" 
             required
             placeholder="Enter your username..."
-            ref={username}
-            onChange={(e) => setUser(e.target.value)}
-            value={user}            
+            ref={user}
+            onChange={(e) => setUsername(e.target.value)}
+            value={username}            
             /><br/>
 
             <label><b>Password</b></label>
             <input className="loginInput" 
             type="password" 
+            autoComplete="password"
             required 
             placeholder="Enter your password..."
             minLength="6"
             // ref={password}
-            onChange={(e) => setPwd(e.target.value)}
-            value={pwd}  />
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}  />
            <button type="submit" className="loginButton"><b>Login</b></button>
 
           </form>
