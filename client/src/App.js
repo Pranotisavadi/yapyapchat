@@ -6,13 +6,13 @@ import HomeChat from './pages/HomeChat';
 import VideoChat from './pages/VideoChat';
 import Navbar from './components/navbar/Navbar';
 import { ContextProvider } from './SocketContext'
-import { AuthContextProvider } from './context/Context';
+import { AuthProvider } from './context/AuthProvider';
 
 
 function App() {
 
   return (
-    <AuthContextProvider>
+    <AuthProvider>
       <Router>
       <Navbar />
         <Routes>
@@ -27,7 +27,7 @@ function App() {
             } />
         </Routes>
       </Router>
-    </AuthContextProvider>
+    </AuthProvider>
     
   );
 }

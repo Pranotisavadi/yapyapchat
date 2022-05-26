@@ -4,8 +4,11 @@ import Peer from 'simple-peer';
 
 //SETTING UP CONNECTION TO BACKEND SERVER
 const SocketContext = createContext('SocketContext');
-const socket = io('http://localhost:8000', {
+const socket = io('http://localhost:3000', {
     withCredentials: true,
+    extraHeaders: {
+        "my-custom-header": "abcd"
+    }
 })
 
 const ContextProvider = ({ children }) => {
