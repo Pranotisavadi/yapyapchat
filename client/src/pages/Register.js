@@ -21,7 +21,7 @@ const Register = () => {
         const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/auth/register`,{
              username, email, password
          });
-         res.data && window.location.replace("/login");
+         if (res.data) return window.location.replace("/login");
         }catch(err){
             setBug(true);
         }     

@@ -1,8 +1,10 @@
 import React from 'react';
 import '../App.css';
 import {useRef, useContext, useEffect, useState } from 'react';
+// import { Link } from 'react'
 import { AuthContext } from '../context/AuthProvider';
 import axios from '../api/axios';
+
 const LOGIN_URL = '/auth/login';
 
 const Login = () => {
@@ -15,7 +17,7 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errMsg, setErrMsg] = useState('');
-  const [success, setSuccess] = useState(false);
+  // const [success, setSuccess] = useState(false);
 
   // useEffect(() => {
   //   username.current.focus();
@@ -41,8 +43,8 @@ const Login = () => {
 
       setUsername("");
       setPassword("");
-      setSuccess(true);
-
+      // setSuccess(true);
+      if (response.data) return window.location.replace("/homechat");
     }catch (err){
       if(!err?.response){
         setErrMsg('No Server Response')
@@ -62,17 +64,6 @@ const Login = () => {
   
   return(
       <>
-      { success ? (
-           <section>
-               <h1>You are logged in!</h1>
-               <br />
-               <p>
-                   <a href="/homechat"> Go to Home</a>
-               </p>
-           </section>
-
-      ):(
-     
     <div className="login">
         <h1>YapYap</h1>
         <div className='loginContainer'>
@@ -100,13 +91,12 @@ const Login = () => {
             // ref={password}
             onChange={(e) => setPassword(e.target.value)}
             value={password}  />
-           <button type="submit" className="loginButton"><b>Login</b></button>
+           <button className="loginButton"><b>Login</b></button>
 
           </form>
             <button className="loginRegisterButton"><a href="./register">Register</a></button>
             </div>
         </div>
-        )}
         </>
 
       
