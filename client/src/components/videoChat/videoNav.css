@@ -6,7 +6,6 @@
     position: sticky;
     top: 0;
     z-index: 999;
-    border-top: 2px solid black;
 }
 
 .grid-container {
@@ -25,10 +24,13 @@
 }
 
 .right-side-panel {
-    background-color:rgb(55, 56, 56);
+    background-color:white;
     flex: 1.5;
     height: 100%;
     bottom: 100px;
+    border: 3px solid rgba(0, 128, 128, 0.454);
+    box-shadow: 5px 10px 20px rgba(0, 128, 128, 0.302);
+    margin-top: 5px;
 }
 
 .topSide {
@@ -38,26 +40,51 @@
 }
 
 .video-nav-item {
-    margin-right: 15px;
+    /* margin-right: 15px;
     cursor: pointer;
-    position: relative;
+    position: relative; */
+
+    padding: 10px 20px;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: teal;
+    border: none;
+    border-radius: 15px;
 }
+
+.video-nav-item:hover {
+    background-color: lightcoral;
+}
+
+
     
 .bottomSide {
-    justify-content: bottom;
-    color: white;
+    color: teal;
+    /* border: 2px solid red; */
+    position: absolute;
+    bottom: 0px;
+    margin-bottom: 10px;
+
 }
 
 .right-icons-container {
-    bottom: 0;
     padding-left: 40px;
+    position: relative;
+    /* border: 2px solid blue; */
+  
+
 }
 
 .end-call-btn {
-    align-items: center;
-    background-color: red;
-    color: white;
-    border-radius: 15%;
-    margin-top: -5px;
+  
+    margin-right: 15px;
     cursor: pointer;
+    position: relative;
+
+  
+    
+    
 }

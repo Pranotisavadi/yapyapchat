@@ -39,15 +39,23 @@ function VideoChat() {
             <div className="video-nav-item">
               <VideoCameraFrontOutlined />
             </div>
+            <br/>
             <div className="video-nav-item">
               <MicOutlined />
             </div>
+            <br/>
             <div className="video-nav-item">
               <IosShareOutlined />
             </div>
-            <button className="end-call-btn" type="button btn-danger">
+            <br/>
+            {/* <button className="end-call-btn" type="button btn-danger">
               <CallEndRounded />
-            </button>
+            </button> */}
+
+            <div className="video-nav-item">
+            <CallEndRounded />
+            </div>
+            
           </div>
         </div>
 
