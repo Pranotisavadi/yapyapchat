@@ -1,17 +1,36 @@
-import React from 'react'
+import { useEffect, useState } from 'react';
+import axios from '../../api/axios';
+// import { AuthContext } from '../../context/AuthProvider';
 import ChatOnline from '../chatOnline/ChatOnline';
-import Groups from '../groups/Groups';
+import Conversation from '../conversations/Conversation';
 import Message from '../message/Message';
 import './leftbar.css';
 
-function LeftBar() {
+function LeftBar() {  
+  const[conversations , setConversations] =useState([])
+  // const {auth} = useContext(AuthContext)
+  // console.log(auth)
+  useEffect(() =>{
+    const fetchConversations = async () => {  
+      try{
+        const res = await axios.get("/conversations/6282eb8183566b3cd179c271")
+        setConversations(res.data);
+      }catch(err){
+        console.log(err)
+      }   
+  } 
+   fetchConversations();    
+  },[])
   return (
       <>
     <div className='messenger'>
         <div  className='chatMenu'>
         <div className="chatMenuWrapper">
         <input placeholder="Search for friends" className="chatMenuInput" />
-        <Groups />
+        {conversations.map((c) =>(
+          <Conversation conversation={c} currentUser ="6282eb8183566b3cd179c271"/>
+        ))}
+       
         </div>
 
         </div>
