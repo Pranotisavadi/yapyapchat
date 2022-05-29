@@ -1,14 +1,15 @@
-import React from 'react';
+// import React, { useContext } from 'react';
 import '../App.css';
-import {useRef, useContext, useEffect, useState } from 'react';
+import {useRef, useEffect, useState } from 'react';
 // import { Link } from 'react'
-import { AuthContext } from '../context/AuthProvider';
+// import { AuthContext } from '../context/AuthProvider';
 import axios from '../api/axios';
 
 const LOGIN_URL = '/auth/login';
 
 const Login = () => {
-  const {setAuth} = useContext(AuthContext)
+  // const {auth} = useContext(AuthContext)
+  // console.log("This is auth from context"+ auth)
 
 
   const user = useRef();
@@ -37,14 +38,16 @@ const Login = () => {
       );
       console.log(response?.data);
       console.log(response);
+    
 
-      setAuth({username, password});
+      // setAuth({username, password});
      
 
       setUsername("");
       setPassword("");
       // setSuccess(true);
       if (response.data) return window.location.replace("/homechat");
+    
     }catch (err){
       if(!err?.response){
         setErrMsg('No Server Response')
