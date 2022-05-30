@@ -11,7 +11,7 @@ const socket = io('http://localhost:3000', {
     }
 })
 
-const ContextProvider = ({ children }) => {
+const SocketProvider = ({ children }) => {
     const [stream, setStream] = useState(null);
     const [me, setMe] = useState('');
     const [call, setCall] = useState({});
@@ -95,4 +95,4 @@ const ContextProvider = ({ children }) => {
     )
 }
 
-export { ContextProvider, SocketContext }
+export { SocketProvider, SocketContext }

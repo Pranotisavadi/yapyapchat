@@ -46,4 +46,21 @@ router.post("/login", async(req, res) => {
     }
 })
 
+//HomeChat
+// router.get("/homechat/:id", validated, async function (req, res) {
+//     const token = req.cookies["token"];
+//     const decoded = jwt.verify(token, process.env.SECRET_KEY);
+//     var userTokenId = decoded.userId;
+  
+//     const conversations = await Conversation.find({
+//       memberId: userTokenId,
+//     });
+  
+//     function renderPage(conversations) {
+//       res.render("homechat", { userConversations: conversations });
+//     }
+  
+//     renderPage(lists);
+//   });
+
 module.exports = router;

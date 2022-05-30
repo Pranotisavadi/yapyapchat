@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import axios from '../../api/axios';
+// import { UserContext } from '../../context/userContext';
 import "./conversation.css";
 
 export default function Conversation({conversation, currentUser}) {
-  const[user , setUser] = useState (null)
+  // const {user} = useContext(UserContext)
+  const[friendUser , setFriendUser] = useState (null)
   useEffect(() => {
-
-    const friendId = conversation.member.find((m) => m !== currentUser)
+    const friendId = conversation.member.find((m) => m !== currentUser._id)
     console.log("This is friend ID" + friendId)
+
     const fetchUser = async () => { 
       try{
     const res = await axios.get("/users/"+ friendId);
-    setUser(res.data)
-    console.log(user)
+    setFriendUser(res.data)
+    console.log(friendUser)
     // console.log(res)
   } catch(err){
     console.log(err)
@@ -25,7 +27,7 @@ export default function Conversation({conversation, currentUser}) {
   return (
     <div className="conversation"> 
     <img className='conversationImg' src="https://images.pexels.com/photos/10116751/pexels-photo-10116751.jpeg?cs=srgb&dl=pexels-photoalexandru-10116751.jpg&fm=jpg" alt=""/>
-    <span className='conversationName'>{user.username}</span>
+    <span className='conversationName'>{friendUser?.username}</span>
     </div>
   )
 }

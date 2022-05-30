@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Grid, Typography, Paper } from '@mui/material';
-import { SocketContext } from '../SocketContext';
+import { SocketContext } from '../context/SocketContext';
 import '../components/videoChat/videoNav.css';
 import { VideoCameraFrontOutlined, MicOutlined, IosShareOutlined, CallEndRounded } from "@mui/icons-material";
 
