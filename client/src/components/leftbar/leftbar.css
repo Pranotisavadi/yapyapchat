@@ -77,7 +77,6 @@
     position: absolute;
     top: 10%;
     font-size: 50px;
-    color: rgba(224,220, 220);
-     cursor: default;
-
+    color: grey;
+    cursor: default;
 }

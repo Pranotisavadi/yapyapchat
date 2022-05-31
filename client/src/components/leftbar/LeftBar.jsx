@@ -10,10 +10,11 @@ function LeftBar() {
   const[conversations , setConversations] = useState([])
   const[currentChat , setCurrentChat] = useState(null)
   const[messages, setMessages] =useState([])
+  const[newMessage, setNewMessage] =useState("");
   const {user} =useContext(AuthContext);
   console.log(user)
   useEffect(() =>{
-    const fetchConversations = async () => {  
+    const fetchConversations = async () => {
       try{
         const res = await axios.get("/conversations/"+ user._id)
         // console.log(res)
@@ -26,24 +27,37 @@ function LeftBar() {
    fetchConversations();    
   },[user._id, conversations])
 
-  useEffect(() => {
-
+   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const res =await axios.get("/messages/62854e2089bd244e9213f026")
-        console.log("this is curenchchat"+ res.data)
+        const res = await axios.get("/messages/62854e2089bd244e9213f026")
         setMessages(res.data);
-
+        console.log(res.data);
       }catch(err){
         console.log(err)
       }
-     
     }
-
  fetchMessages();
   }, [currentChat])
-
+  
   console.log(messages)
+
+  const handleSubmit = async (e)=>{
+    e.preventDefault();
+    const message = {
+      sender: "62854e2089bd244e9213f026",
+      text: newMessage,
+      conversationId: currentChat._id
+    };
+
+    try{
+      const res = await axios.post("/messages", message);
+    }catch(err){
+      console.log(err)
+    }
+  }
+  
+
   return (
       <>
     <div className='messenger'>
@@ -55,9 +69,7 @@ function LeftBar() {
           <Conversation key={c._id} conversation={c} currentUser = { user }/>
           </div>
         ))}
-       
         </div>
-
         </div>
         <div  className='chatBox'>
         <div className="chatBoxWrapper">
@@ -66,23 +78,21 @@ function LeftBar() {
             (
         <>
             <div className='chatBoxTop'>
-            <Message />
-            <Message own={true}/>
-            <Message />
-            <Message />
-            <Message />
-            <Message />
-            <Message />
-            <Message />
-            <Message />
+              {messages.map(m=>(
+                <Message message={m} own={m.sender === "6282eb8183566b3cd179c271"}/>
+              ))}
             </div>
-
             <div className='chatBoxBottom'>
-            <textarea className='chatMessageInput' placeholder='Chat With YapYap . . .'></textarea>
-            <button className='chatSubmitButton'>Send</button>
+            <textarea 
+            className='chatMessageInput' 
+            placeholder='Chat With YapYap . . .'
+            onChange={(e)=>setNewMessage(e.target.value)}
+            value={newMessage}
+            ></textarea>
+            <button className='chatSubmitButton' onClick={handleSubmit}>Send</button>
             </div> </>
             ) :( <span className="noConversationText">Open a conversation to start chat</span> )}
-            
+        </div>
         </div>
         
         </div>
@@ -90,12 +100,9 @@ function LeftBar() {
         <div className="chatOnlineWrapper">
             <ChatOnline />
         </div>
-
-            
         </div>
-    </div>
+   
     </>
   )
 }
-
 export default LeftBar
