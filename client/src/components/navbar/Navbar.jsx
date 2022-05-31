@@ -1,10 +1,14 @@
-import React from 'react'
+// import React, { useContext } from 'react'
 import "./navbar.css";
 import {Search, Person, Chat, Notifications} from "@mui/icons-material";
+// import { AuthContext } from '../../context/AuthContext';
 
 
 
 function Navbar() {
+
+  // const {user} =useContext(AuthContext);
+  // const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
 
   return (
@@ -38,7 +42,7 @@ function Navbar() {
             <span className="topbarIconBadge"></span>
           </div>
         </div>
-        <img src="https://images.pexels.com/photos/10116751/pexels-photo-10116751.jpeg?cs=srgb&dl=pexels-photoalexandru-10116751.jpg&fm=jpg" alt="" className="topbarImg"/>
+        <img src={"https://images.pexels.com/photos/10116751/pexels-photo-10116751.jpeg?cs=srgb&dl=pexels-photoalexandru-10116751.jpg&fm=jpg" }alt="" className="topbarImg"/>
       </div>
       {/* <div className="topbarLinks">
           <span className="topbarLink">Login</span>

@@ -1,59 +1,26 @@
-import React, { useContext } from 'react';
+import { useContext, useRef } from "react";
 import '../App.css';
-// import { useEffect, useState } from 'react';
-// import axios from '../api/axios';
-import { UserContext } from '../context/UserContext';
 
-// const LOGIN_URL = '/auth/login';
+import { AuthContext } from "../context/AuthContext";
+import { loginCall } from "../apiCalls";
 
-const Login = () => {
-  const {username, password, setUsername, setPassword, handleClick} = useContext(UserContext)
-  // const [username, setUsername] = useState('');
-  // const [password, setPassword] = useState('');
-  // const [errMsg, setErrMsg] = useState('');
+// import { CircularProgress } from "@material-ui/core";
 
-  // useEffect(() => {
-  //   username.current.focus();
-  // },[])
+export default function Login() {
+  const username = useRef();
+  const password = useRef();
+  const { user, dispatch } = useContext(AuthContext);
 
-  // useEffect(() => {
-  //     setErrMsg('');},[username,password])
+  const handleClick = (e) => {
+    e.preventDefault();
+    loginCall(
+      { username: username.current.value, password: password.current.value }, dispatch );
+  };
+console.log(user);
+if (user) return window.location.replace("/homechat");
 
-  // const handleClick = async (e) =>{
-  //   e.preventDefault();
-
-  //   try{
-  //     const response = await axios.post(LOGIN_URL, { username, password }, {
-  //       headers: {'Content-Type' : 'application/json'},
-  //       withCredentials: true,
-  //     }
-  //     );
-  //     console.log("the response.data is: ", response?.data);
-  //     console.log("the response is: ", response);
-  //     setUser(response?.data);
-  //     console.log("this is the user: ", user)
-
-  //     setUsername("");
-  //     setPassword("");
-
-  //     if (user) return window.location.replace(`/auth/homechat/${user._id}`);
-    
-  //   }catch (err){
-  //     if(!err?.user){
-  //       setErrMsg('No Server Response')
-  //     }else if(err.user?.status === 400){
-  //       setErrMsg('Missing username or Password')
-
-  //     }else if(err.user?.status === 401){
-  //       setErrMsg('Unauthorized');
-  //     }else{
-  //       setErrMsg('Login Failed');
-  //     }
-  //   }
-  // }
-  
-  return(
-      <>
+  return (
+    <>
     <div className="login">
         <h1>YapYap</h1>
         <div className='loginContainer'>
@@ -66,9 +33,9 @@ const Login = () => {
             autoComplete="username" 
             required
             placeholder="Enter your username..."
-            // ref={user}
-            onChange={(e) => setUsername(e.target.value)}
-            value={username}            
+            ref={username}
+            // onChange={(e) => setUsername(e.target.value)}
+            // value={username}            
             /><br/>
 
             <label><b>Password</b></label>
@@ -78,21 +45,16 @@ const Login = () => {
             required 
             placeholder="Enter your password..."
             minLength="6"
-            // ref={password}
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}  />
-           <button className="loginButton"><b>Login</b></button>
+            ref={password}
+            // onChange={(e) => setPassword(e.target.value)}
+            // value={password} 
+             />
+           <button className="loginButton" type="submit"><b>Login</b></button>
 
           </form>
             <button className="loginRegisterButton"><a href="./register">Register</a></button>
             </div>
         </div>
         </>
-
-      
-
-  )
-
+  );
 }
-
- export default Login;

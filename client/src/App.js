@@ -1,33 +1,34 @@
 import './App.css';
-import { BrowserRouter as Router, Routes, Route, } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route,} from 'react-router-dom'
 import Login from './pages/Log'
 import Register from './pages/Register'
 import HomeChat from './pages/HomeChat';
 import VideoChat from './pages/VideoChat';
 import Navbar from './components/navbar/Navbar';
-import { UserContext, UserProvider } from './context/UserContext';
-import { SocketProvider } from './context/SocketContext';
-import { useContext } from 'react'
+// import { ContextProvider } from './SocketContext'
+// import {  AuthProvider } from './context/AuthProvider';
+import { useContext } from 'react';
+import { AuthContext } from './context/AuthContext';
+
 
 function App() {
-  const {user} = useContext(UserContext)
+  const {user} = useContext(AuthContext);
+  console.log(user)
 
   return (
    <UserProvider>
       <Router>
       <Navbar />
         <Routes>
-            <Route exact path="/" element={<Login />} />
-            <Route path="/login" element={<Login />} />
+            <Route exact path="/" element={ user ? <HomeChat /> : <Register/> } />
+            <Route path="/login" element={user ? <HomeChat/> : <Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/homechat/:id" element={user ? <Login /> : <HomeChat />} />
-            <Route path="/homechat" element={ <HomeChat />
-             } />
-            <Route path="/homechat/:id" element={
-            <SocketProvider>
-              {user ? <VideoChat /> : <Login />}
-            </SocketProvider>
-            } />
+            <Route path="/homechat" element={user ? <HomeChat /> : <Register /> } />
+            {/* <Route path="/videochat" element={
+            <ContextProvider>
+              <VideoChat />
+            </ContextProvider>
+            } /> */}
         </Routes>
       </Router>
    </UserProvider>

@@ -4,12 +4,11 @@ import axios from '../../api/axios';
 import "./conversation.css";
 
 export default function Conversation({conversation, currentUser}) {
-  // const {user} = useContext(UserContext)
-  const[friendUser , setFriendUser] = useState (null)
+  const[user , setUser] = useState ({})
   useEffect(() => {
-    const friendId = conversation.member.find((m) => m !== currentUser._id)
-    console.log("This is friend ID" + friendId)
 
+    const friendId = conversation.member.find((m) => m !== currentUser._id)
+    console.log(" " + friendId)
     const fetchUser = async () => { 
       try{
     const res = await axios.get("/users/"+ friendId);
@@ -27,7 +26,7 @@ export default function Conversation({conversation, currentUser}) {
   return (
     <div className="conversation"> 
     <img className='conversationImg' src="https://images.pexels.com/photos/10116751/pexels-photo-10116751.jpeg?cs=srgb&dl=pexels-photoalexandru-10116751.jpg&fm=jpg" alt=""/>
-    <span className='conversationName'>{friendUser?.username}</span>
+    <span className='conversationName'>{user?.username}</span>
     </div>
   )
 }
