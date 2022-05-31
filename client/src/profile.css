@@ -1,0 +1,75 @@
+*{
+    margin: 0;
+    padding: 0;
+  }
+  
+  .page{
+    height: 50vh;
+    width: 50vh;
+    background-color: lightcoral;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+  }
+  /* .container{
+    height: 300px;
+    width: 300px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    
+  } */
+  .heading{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    /* margin-top: 1rem; */
+    /* font-weight: bold; */
+  
+  }
+  .img-holder{
+    margin: auto;
+    width: 150px;
+    height: 150px;
+    border-radius: 5px;
+    margin-top: 1rem;
+  }
+  .img{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px teal solid;
+
+
+  }
+  #input[type="file"] {
+      display: none;
+  }
+  .label{
+    width: 100%;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+  }
+  .image-upload{
+    margin: auto;
+    width: 200px;
+    height: 40px;
+    color: white;
+    border-radius: 10px;
+    background-color: teal;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .btn {
+    background-image: url('https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png');
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    border: none;
+    background-size: cover;
+    
+  }
