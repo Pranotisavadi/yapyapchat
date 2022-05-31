@@ -16,7 +16,6 @@ function App() {
   console.log(user)
 
   return (
-   
       <Router>
       <Navbar />
         <Routes>
@@ -31,8 +30,6 @@ function App() {
             } /> */}
         </Routes>
       </Router>
-   
-    
   );
 }
 
