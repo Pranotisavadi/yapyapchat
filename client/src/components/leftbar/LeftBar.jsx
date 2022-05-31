@@ -1,6 +1,6 @@
 import React from 'react'
 import ChatOnline from '../chatOnline/ChatOnline';
-import Groups from '../groups/Groups';
+import Conversation from '../conversations/Conversation';
 import Message from '../message/Message';
 import './leftbar.css';
 
@@ -11,7 +11,7 @@ function LeftBar() {
         <div  className='chatMenu'>
         <div className="chatMenuWrapper">
         <input placeholder="Search for friends" className="chatMenuInput" />
-        <Groups />
+        <Conversation />
         </div>
 
         </div>

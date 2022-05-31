@@ -1,5 +1,5 @@
 import React from 'react'
-import "./groups.css";
+import "./conversation.css";
 
 export default function Groups() {
   return (
