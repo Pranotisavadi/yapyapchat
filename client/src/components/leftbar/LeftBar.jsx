@@ -5,12 +5,12 @@ import ChatOnline from '../chatOnline/ChatOnline';
 import Conversation from '../conversations/Conversation';
 import Message from '../message/Message';
 import './leftbar.css';
-
-function LeftBar() {  
+function LeftBar() {
   const[conversations , setConversations] = useState([])
   const[currentChat , setCurrentChat] = useState(null)
   const[messages, setMessages] =useState([])
   const[newMessage, setNewMessage] =useState("");
+  const scrollRef = useRef();
   const {user} =useContext(AuthContext);
   console.log(user)
   useEffect(() =>{
@@ -22,12 +22,11 @@ function LeftBar() {
         console.log(conversations);
       }catch(err){
         console.log(err)
-      }   
-  } 
-   fetchConversations();    
+      }
+  }
+   fetchConversations();
   },[user._id, conversations])
-
-   useEffect(() => {
+  useEffect(() => {
     const fetchMessages = async () => {
       try {
         const res = await axios.get("/messages/62854e2089bd244e9213f026")
@@ -39,9 +38,7 @@ function LeftBar() {
     }
  fetchMessages();
   }, [currentChat])
-  
   console.log(messages)
-
   const handleSubmit = async (e)=>{
     e.preventDefault();
     const message = {
@@ -49,15 +46,14 @@ function LeftBar() {
       text: newMessage,
       conversationId: currentChat._id
     };
-
     try{
       const res = await axios.post("/messages", message);
+      setMessages([...messages, res.data]);
+      setNewMessage("");
     }catch(err){
       console.log(err)
     }
   }
-  
-
   return (
       <>
     <div className='messenger'>
@@ -79,12 +75,14 @@ function LeftBar() {
         <>
             <div className='chatBoxTop'>
               {messages.map(m=>(
-                <Message message={m} own={m.sender === "6282eb8183566b3cd179c271"}/>
+                <div ref= {scrollRef}>
+                  <Message message={m} own={m.sender === "6282eb8183566b3cd179c271"}/>
+                </div>
               ))}
             </div>
             <div className='chatBoxBottom'>
-            <textarea 
-            className='chatMessageInput' 
+            <textarea
+            className='chatMessageInput'
             placeholder='Chat With YapYap . . .'
             onChange={(e)=>setNewMessage(e.target.value)}
             value={newMessage}
@@ -94,14 +92,12 @@ function LeftBar() {
             ) :( <span className="noConversationText">Open a conversation to start chat</span> )}
         </div>
         </div>
-        
-        </div>
         <div  className='chatOnline'>
         <div className="chatOnlineWrapper">
             <ChatOnline />
         </div>
         </div>
-   
+    </div>
     </>
   )
 }
