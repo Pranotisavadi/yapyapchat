@@ -1,6 +1,8 @@
-// import React, { useContext } from 'react'
+import { Link } from 'react-router-dom'
 import "./navbar.css";
-import {Search, Person, Chat, Notifications} from "@mui/icons-material";
+import {Search, Person, Chat, Notifications, VideoCameraFront} from "@mui/icons-material";
+import ScrollDialog from '../ScrollDialog';
+
 // import { AuthContext } from '../../context/AuthContext';
 
 
@@ -14,7 +16,7 @@ function Navbar() {
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
-        <span className="logo">YapYap</span>
+        <span className="logo"><Link to="/homechat" style={{ textDecoration: 'none', color: 'white' }}>YapYap</Link></span>
       </div>
       
       <div className="topbarCenter">
@@ -30,23 +32,38 @@ function Navbar() {
         
         <div className="topbarIcons">
           <div className="topbarIconItem">
+            <Link to="/videochat" style={{ textDecoration: 'none', color: 'white' }}>
+              <VideoCameraFront />
+            </Link>
+          </div>
+          <div className="topbarIconItem">
             <Person />
-            <span className="topbarIconBadge">1</span>
+            <span className="topbarIconBadge"></span>
           </div>
           <div className="topbarIconItem">
             <Chat />
-            <span className="topbarIconBadge">2</span>
+            <span className="topbarIconBadge"></span>
           </div>
           <div className="topbarIconItem">
             <Notifications />
             <span className="topbarIconBadge"></span>
           </div>
         </div>
-        <img src={"https://images.pexels.com/photos/10116751/pexels-photo-10116751.jpeg?cs=srgb&dl=pexels-photoalexandru-10116751.jpg&fm=jpg" }alt="" className="topbarImg"/>
+
+        <div className="profile">
+
+        {/* <img src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png' alt="" className="topbarImg" /> */}
+        <ScrollDialog />
+       
+        </div>
+
+
       </div>
+
       {/* <div className="topbarLinks">
           <span className="topbarLink">Login</span>
         </div> */}
+       
     </div>
   )
 }

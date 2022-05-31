@@ -1,45 +1,45 @@
-import { useEffect, useState, useRef } from 'react';
+import { useContext, useEffect, useState, useRef } from 'react';
 import axios from '../../api/axios';
 // import { AuthContext } from '../../context/AuthProvider';
 import ChatOnline from '../chatOnline/ChatOnline';
 import Conversation from '../conversations/Conversation';
 import Message from '../message/Message';
 import './leftbar.css';
-
 function LeftBar() {
   const[conversations , setConversations] = useState([])
   const[currentChat , setCurrentChat] = useState(null)
   const[messages, setMessages] =useState([])
   const[newMessage, setNewMessage] =useState("");
   const scrollRef = useRef();
-  // const {auth} = useContext(AuthContext)
-  // console.log(auth)
+  const {user} =useContext(AuthContext);
+  console.log(user)
+
   useEffect(() =>{
     const fetchConversations = async () => {
       try{
         const res = await axios.get("/conversations/6282eb8183566b3cd179c271")
         setConversations(res.data);
-        console.log(res.data);
+        console.log("this are conversations: ",conversations);
       }catch(err){
         console.log(err)
       }
   }
    fetchConversations();
-  },[])
+  },[user._id, conversations])
 
   useEffect(() => {
     const fetchMessages = async () => {
       try {
         const res = await axios.get("/messages/62854e2089bd244e9213f026")
         setMessages(res.data);
-        console.log(res.data);
+        console.log("this are messages: ", messages);
       }catch(err){
         console.log(err)
       }
     }
  fetchMessages();
-  }, [currentChat])
-  
+  }, [currentChat, messages])
+
   console.log(messages)
 
   const handleSubmit = async (e)=>{
@@ -49,7 +49,6 @@ function LeftBar() {
       text: newMessage,
       conversationId: currentChat._id
     };
-
     try{
       const res = await axios.post("/messages", message);
       setMessages([...messages, res.data]);
@@ -90,8 +89,8 @@ function LeftBar() {
               ))}
             </div>
             <div className='chatBoxBottom'>
-            <textarea 
-            className='chatMessageInput' 
+            <textarea
+            className='chatMessageInput'
             placeholder='Chat With YapYap . . .'
             onChange={(e)=>setNewMessage(e.target.value)}
             value={newMessage}
