@@ -10,7 +10,7 @@ export default function Conversation({conversation, currentUser}) {
     console.log(" " + friendId)
     const fetchUser = async () => { 
       try{
-    const res = await axios.get("/users/"+ friendId);
+    const res = await axios.get("/users?userId="+ friendId);
     setUser(res.data)
     console.log(user)
     // console.log(res)

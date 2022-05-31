@@ -1,43 +1,33 @@
-<<<<<<< HEAD
 import { useEffect, useState, useRef } from 'react';
-=======
-import { useContext, useEffect, useState } from 'react';
->>>>>>> e0c0627670d929916de26046898d571ab8b4030a
 import axios from '../../api/axios';
-import { AuthContext } from '../../context/AuthContext';
+// import { AuthContext } from '../../context/AuthProvider';
 import ChatOnline from '../chatOnline/ChatOnline';
 import Conversation from '../conversations/Conversation';
 import Message from '../message/Message';
 import './leftbar.css';
 
-function LeftBar() {  
+function LeftBar() {
   const[conversations , setConversations] = useState([])
   const[currentChat , setCurrentChat] = useState(null)
   const[messages, setMessages] =useState([])
   const[newMessage, setNewMessage] =useState("");
-<<<<<<< HEAD
   const scrollRef = useRef();
   // const {auth} = useContext(AuthContext)
   // console.log(auth)
-=======
-  const {user} =useContext(AuthContext);
-  console.log(user)
->>>>>>> e0c0627670d929916de26046898d571ab8b4030a
   useEffect(() =>{
     const fetchConversations = async () => {
       try{
-        const res = await axios.get("/conversations/"+ user._id)
-        // console.log(res)
+        const res = await axios.get("/conversations/6282eb8183566b3cd179c271")
         setConversations(res.data);
-        console.log(conversations);
+        console.log(res.data);
       }catch(err){
         console.log(err)
-      }   
-  } 
-   fetchConversations();    
-  },[user._id, conversations])
+      }
+  }
+   fetchConversations();
+  },[])
 
-   useEffect(() => {
+  useEffect(() => {
     const fetchMessages = async () => {
       try {
         const res = await axios.get("/messages/62854e2089bd244e9213f026")
@@ -69,6 +59,9 @@ function LeftBar() {
     }
   }
   
+  useEffect(()=>{
+    scrollRef.current?.scrollIntoView({behavior: "smooth"})
+  }, [messages])
 
   return (
       <>
@@ -78,7 +71,7 @@ function LeftBar() {
         <input placeholder="Search for friends" className="chatMenuInput" />
         {conversations.map((c) =>(
           <div onClick = {() => setCurrentChat(c)}>
-          <Conversation key={c._id} conversation={c} currentUser = { user }/>
+          <Conversation conversation={c} currentUser ="6282eb8183566b3cd179c271"/>
           </div>
         ))}
         </div>
@@ -108,14 +101,12 @@ function LeftBar() {
             ) :( <span className="noConversationText">Open a conversation to start chat</span> )}
         </div>
         </div>
-        
-        </div>
         <div  className='chatOnline'>
         <div className="chatOnlineWrapper">
             <ChatOnline />
         </div>
         </div>
-   
+    </div>
     </>
   )
 }
