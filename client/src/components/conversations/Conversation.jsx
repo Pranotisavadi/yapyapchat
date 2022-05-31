@@ -3,11 +3,11 @@ import axios from '../../api/axios';
 import "./conversation.css";
 
 export default function Conversation({conversation, currentUser}) {
-  const[user , setUser] = useState (null)
+  const[user , setUser] = useState ({})
   useEffect(() => {
 
-    const friendId = conversation.member.find((m) => m !== currentUser)
-    console.log("This is friend ID" + friendId)
+    const friendId = conversation.member.find((m) => m !== currentUser._id)
+    console.log(" " + friendId)
     const fetchUser = async () => { 
       try{
     const res = await axios.get("/users/"+ friendId);
