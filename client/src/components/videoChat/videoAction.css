@@ -1,0 +1,41 @@
+.actions-container {
+    width: 600px;
+    margin: 35px 0;
+    padding: 0;
+}
+
+.paper {
+    padding: 10px 20px;
+    border: 2px solid black;
+}
+
+.form-root {
+    display: flex;
+    flex-direction: column;
+}
+
+.grid-container {
+    width: 100%;
+}
+
+.grid-child {
+    padding: 20;
+}
+
+.copy-clipboard {
+    margin-top: 20;
+}
+
+.button-end {
+    margin-top: 20;
+}
+
+@media screen and (min-width: 500px) {
+    .grid-container {
+        flex-direction: column;
+    }
+
+    .actions-container {
+        width: 80%;
+    }
+}
