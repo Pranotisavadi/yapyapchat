@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import axios from '../../api/axios';
 // import { AuthContext } from '../../context/AuthProvider';
 import ChatOnline from '../chatOnline/ChatOnline';
@@ -11,6 +11,7 @@ function LeftBar() {
   const[currentChat , setCurrentChat] = useState(null)
   const[messages, setMessages] =useState([])
   const[newMessage, setNewMessage] =useState("");
+  const scrollRef = useRef();
   // const {auth} = useContext(AuthContext)
   // console.log(auth)
   useEffect(() =>{
@@ -51,6 +52,8 @@ function LeftBar() {
 
     try{
       const res = await axios.post("/messages", message);
+      setMessages([...messages, res.data]);
+      setNewMessage("");
     }catch(err){
       console.log(err)
     }
@@ -78,7 +81,9 @@ function LeftBar() {
         <>
             <div className='chatBoxTop'>
               {messages.map(m=>(
-                <Message message={m} own={m.sender === "6282eb8183566b3cd179c271"}/>
+                <div ref= {scrollRef}>
+                  <Message message={m} own={m.sender === "6282eb8183566b3cd179c271"}/>
+                </div>
               ))}
             </div>
             <div className='chatBoxBottom'>
