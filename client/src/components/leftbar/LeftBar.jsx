@@ -13,32 +13,36 @@ function LeftBar() {
   const scrollRef = useRef();
   const {user} =useContext(AuthContext);
   console.log(user)
+
   useEffect(() =>{
     const fetchConversations = async () => {
       try{
         const res = await axios.get("/conversations/"+ user._id)
         // console.log(res)
         setConversations(res.data);
-        console.log(conversations);
+        console.log("this are conversations: ",conversations);
       }catch(err){
         console.log(err)
       }
   }
    fetchConversations();
   },[user._id, conversations])
+
   useEffect(() => {
     const fetchMessages = async () => {
       try {
         const res = await axios.get("/messages/62854e2089bd244e9213f026")
         setMessages(res.data);
-        console.log(res.data);
+        console.log("this are messages: ", messages);
       }catch(err){
         console.log(err)
       }
     }
  fetchMessages();
-  }, [currentChat])
+  }, [currentChat, messages])
+
   console.log(messages)
+
   const handleSubmit = async (e)=>{
     e.preventDefault();
     const message = {
@@ -54,6 +58,7 @@ function LeftBar() {
       console.log(err)
     }
   }
+
   return (
       <>
     <div className='messenger'>
