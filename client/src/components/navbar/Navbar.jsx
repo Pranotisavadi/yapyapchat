@@ -1,12 +1,16 @@
-import React from 'react'
+// import React, { useContext } from 'react'
 import "./navbar.css";
 import {Search, Person, Chat, Notifications} from "@mui/icons-material";
 import ScrollDialog from '../ScrollDialog';
 
+// import { AuthContext } from '../../context/AuthContext';
 
 
 
 function Navbar() {
+
+  // const {user} =useContext(AuthContext);
+  // const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
 
   return (
