@@ -13,13 +13,6 @@ function LeftBar() {
   const [messages, setMessages] = useState([])
   const [newMessage, setNewMessage] = useState("");
   const [arrivalMessage, setArrivalMessage] = useState(null);
-<<<<<<< HEAD
-
-  const scrollRef = useRef();
-  const { user } = useContext(AuthContext);
-  const socket = useRef()
-  console.log(user)
-=======
   const scrollRef = useRef();
   const { user } = useContext(AuthContext);
   const socket = useRef()
@@ -47,7 +40,6 @@ function LeftBar() {
       console.log(users);
     })
   },[user]);
->>>>>>> ee6d787b243c23dc0a4b70f4dee4fce185dfa16a
 
   useEffect(() => {
     socket.current = io("ws://localhost:8800")
