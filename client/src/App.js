@@ -9,12 +9,9 @@ import { ContextProvider } from './SocketContext'
 // import {  AuthProvider } from './context/AuthProvider';
 import { useContext } from 'react';
 import { AuthContext } from './context/AuthContext';
-
-
 function App() {
   const {user} = useContext(AuthContext);
   console.log(user)
-
   return (
       <Router>
       <Navbar />
@@ -30,5 +27,4 @@ function App() {
       </Router>
   );
 }
-
 export default App;

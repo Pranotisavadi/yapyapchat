@@ -61,6 +61,9 @@ db.mongoose
     });
   })
 
+  // chat socket connection
+
+  
   const PORT = 8000;
 
   server.listen(PORT, () => {
