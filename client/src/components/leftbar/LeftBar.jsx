@@ -20,7 +20,7 @@ function LeftBar() {
 
   useEffect(()=>{
     socket.current = io("ws://localhost:8800")
-    socket.current.on("getMesage", (data)=>{
+    socket.current.on("getMessage", (data)=>{
       setArrivalMessage({
         sender: data.senderId,
         text: data.text,
@@ -31,7 +31,7 @@ function LeftBar() {
 
   useEffect(()=>{
     arrivalMessage && 
-    currentChat?.members.includes(arrivalMessage.sender) && setMessages((prev) => [...prev, arrivalMessage])
+    currentChat.member.includes(arrivalMessage.sender) && setMessages((prev) => [...prev, arrivalMessage])
   }, [arrivalMessage, currentChat]);
 
   useEffect(()=>{
