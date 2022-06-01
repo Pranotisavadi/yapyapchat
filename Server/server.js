@@ -7,7 +7,6 @@ const authRoute = require("./app/routes/auth");
 const usersRoute = require("./app/routes/users");
 const conversationsRoute = require("./app/routes/conversations");
 const messagesRoute = require("./app/routes/messages");
-
 app.use(express.json());
 
 // app.listen("8000", ()=> {
@@ -62,6 +61,9 @@ db.mongoose
     });
   })
 
+  // chat socket connection
+
+  
   const PORT = 8000;
 
   server.listen(PORT, () => {
