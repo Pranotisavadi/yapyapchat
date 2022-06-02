@@ -36,14 +36,12 @@
 .topSide {
     justify-content: top;
     color: white;
-
 }
 
 .video-nav-item {
     /* margin-right: 15px;
     cursor: pointer;
     position: relative; */
-
     padding: 10px 20px;
     font-size: 20px;
     text-align: center;
@@ -58,33 +56,33 @@
 .video-nav-item:hover {
     background-color: lightcoral;
 }
-
-
-    
+  
 .bottomSide {
     color: teal;
     /* border: 2px solid red; */
     position: absolute;
     bottom: 0px;
     margin-bottom: 10px;
-
 }
 
 .right-icons-container {
     padding-left: 40px;
     position: relative;
     /* border: 2px solid blue; */
-  
-
 }
 
 .end-call-btn {
-  
     margin-right: 15px;
     cursor: pointer;
     position: relative;
-
-  
-    
-    
 }
+
+/* @media screen and (min-width: 500px) {
+    .video {
+        width: 300px
+    }
+
+    .grid-container {
+        flex-direction: column;
+    }
+} */

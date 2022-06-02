@@ -7,7 +7,6 @@ const authRoute = require("./app/routes/auth");
 const usersRoute = require("./app/routes/users");
 const conversationsRoute = require("./app/routes/conversations");
 const messagesRoute = require("./app/routes/messages");
-
 app.use(express.json());
 
 // app.listen("8000", ()=> {
@@ -17,7 +16,9 @@ app.use(express.json());
 const io = new Server(server);
 
 
-app.use(cors({origin: "http://localhost:3000", credentials :true}))
+app.use(cors({
+  origin: "http://localhost:3000", 
+  credentials :true}))
 
 app.use(express.urlencoded({ extended: true }));
   const db = require("./app/models");
@@ -62,6 +63,9 @@ db.mongoose
     });
   })
 
+  // chat socket connection
+
+  
   const PORT = 8000;
 
   server.listen(PORT, () => {

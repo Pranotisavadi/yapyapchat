@@ -1,6 +1,6 @@
-// import React, { useContext } from 'react'
+import { Link } from 'react-router-dom'
 import "./navbar.css";
-import {Search, Person, Chat, Notifications} from "@mui/icons-material";
+import {Search, Person, Chat, Notifications, VideoCameraFront} from "@mui/icons-material";
 import ScrollDialog from '../ScrollDialog';
 
 // import { AuthContext } from '../../context/AuthContext';
@@ -17,7 +17,7 @@ function Navbar() {
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
-        <span className="logo">YapYap</span>
+        <span className="logo"><Link to="/homechat" style={{ textDecoration: 'none', color: 'white' }}>YapYap</Link></span>
       </div>
       
       <div className="topbarCenter">
@@ -33,12 +33,17 @@ function Navbar() {
         
         <div className="topbarIcons">
           <div className="topbarIconItem">
+            <Link to="/videochat" style={{ textDecoration: 'none', color: 'white' }}>
+              <VideoCameraFront />
+            </Link>
+          </div>
+          <div className="topbarIconItem">
             <Person />
-            <span className="topbarIconBadge">1</span>
+            <span className="topbarIconBadge"></span>
           </div>
           <div className="topbarIconItem">
             <Chat />
-            <span className="topbarIconBadge">2</span>
+            <span className="topbarIconBadge"></span>
           </div>
           <div className="topbarIconItem">
             <Notifications />
