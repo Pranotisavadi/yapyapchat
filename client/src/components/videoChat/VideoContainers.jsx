@@ -53,7 +53,7 @@ function VideoContainers() {
         
     //   </div>
     // </div>
-  )
-}
+  );
+};
 
 export default VideoContainers;
