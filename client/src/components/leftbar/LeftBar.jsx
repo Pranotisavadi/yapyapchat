@@ -1,12 +1,14 @@
 import { useContext, useEffect, useState } from 'react';
 import axios from '../../api/axios';
 import { AuthContext } from '../../context/AuthContext';
-import ChatOnline from '../chatOnline/ChatOnline';
+// import ChatOnline from '../chatOnline/ChatOnline';
 import Conversation from '../conversations/Conversation';
 import Message from '../message/Message';
 import './leftbar.css';
 
 function LeftBar() {  
+
+
   const[conversations , setConversations] = useState([])
   const[currentChat , setCurrentChat] = useState(null)
   const[messages, setMessages] =useState([])
@@ -52,6 +54,7 @@ function LeftBar() {
 
     try{
       const res = await axios.post("/messages", message);
+      console.log(res);
     }catch(err){
       console.log(err)
     }
@@ -63,7 +66,13 @@ function LeftBar() {
     <div className='messenger'>
         <div  className='chatMenu'>
         <div className="chatMenuWrapper">
-        <input placeholder="Search for friends" className="chatMenuInput" />
+
+        <input  type="text" 
+        placeholder="Search for friends" 
+        className="chatMenuInput"
+         />
+         
+
         {conversations.map((c) =>(
           <div onClick = {() => setCurrentChat(c)}>
           <Conversation key={c._id} conversation={c} currentUser = { user }/>
@@ -98,7 +107,7 @@ function LeftBar() {
         </div>
         <div  className='chatOnline'>
         <div className="chatOnlineWrapper">
-            <ChatOnline />
+            {/* <ChatOnline /> */}
         </div>
         </div>
    
