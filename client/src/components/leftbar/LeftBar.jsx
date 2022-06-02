@@ -42,6 +42,29 @@ function LeftBar() {
   },[user]);
 
   useEffect(() => {
+    socket.current = io("ws://localhost:8800")
+    socket.current.on("getMesage", data => {
+      setArrivalMessage({
+        sender: data.senderId,
+        text: data.text,
+        createdAt: Date.now(),
+      });
+    });
+  }, []);
+
+  useEffect(() => {
+    arrivalMessage &&
+      currentChat?.members.includes(arrivalMessage.sender) && setMessages((prev) => [...prev, arrivalMessage])
+  }, [arrivalMessage, currentChat]);
+
+  useEffect(() => {
+    socket.current.emit("addUser", user._id);
+    socket.current.on("getUsers", users => {
+      console.log(users);
+    })
+  }, [user]);
+
+  useEffect(() => {
     const fetchConversations = async () => {
       try {
         const res = await axios.get("/conversations/" + user._id)
@@ -86,7 +109,6 @@ function LeftBar() {
       receiverId,
       text: newMessage,
     })
-
     try {
       const res = await axios.post("/messages", message);
       setMessages([...messages, res.data]);

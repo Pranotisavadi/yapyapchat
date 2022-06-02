@@ -59,7 +59,7 @@ db.mongoose
     });
 
     socket.on("answerCall", (data) => {
-      io.to(data.toString()).emit("callAccepted", data.signal)
+      io.to(data.to).emit("callAccepted", data.signal)
     });
   })
 

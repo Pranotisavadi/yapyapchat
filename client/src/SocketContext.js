@@ -9,56 +9,56 @@ const socket = io('http://localhost:3000', {
     extraHeaders: {
         "my-custom-header": "abcd"
     }
-})
+});
 
 const ContextProvider = ({ children }) => {
-    const [stream, setStream] = useState(null);
-    const [me, setMe] = useState('');
-    const [call, setCall] = useState({});
     const [callAccepted, setCallAccepted] = useState(false);
     const [callEnded, setCallEnded] = useState(false);
+    const [stream, setStream] = useState();
     const [name, setName] = useState('');
+    const [call, setCall] = useState({});
+    const [me, setMe] = useState('');
 
-    const myVideo = useRef();
-    const userVideo = useRef();
     const connectionRef = useRef();
+    const userVideo = useRef();
+    const myVideo = useRef();
 
     useEffect(() => {
         navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((currentStream) => {
-            setStream(currentStream)
+            setStream(currentStream);
 
             myVideo.current.srcObject = currentStream;
         });
 
-        socket.on('me', (id) => setMe(id))
+        socket.on('me', (id) => setMe(id));
 
         socket.on('callUser', ({ from, name: callerName, signal }) => {
-            setCall({ isReceivingCall: true, from, name: callerName, signal })
-        })
+            setCall({ isReceivingCall: true, from, name: callerName, signal });
+        });
     }, []);
 
     //Logic for ANSWERING a call
     const answerCall = () => {
-        setCallAccepted(true)
+        setCallAccepted(true);
 
-        const peer = new Peer({ initiator: false, trickle: false, stream })
+        const peer = new Peer({ initiator: false, trickle: false, stream });
 
         peer.on('signal', (data) => {
-            socket.emit('answerCall', { signal: data, to: call.from })
+            socket.emit('answerCall', { signal: data, to: call.from });
         });
 
         peer.on('stream', (currentStream) => {
-            userVideo.current.srcObject = currentStream
-        })
+            userVideo.current.srcObject = currentStream;
+        });
 
-        peer.signal(call.signal)
+        peer.signal(call.signal);
 
-        connectionRef.current = peer
+        connectionRef.current = peer;
     }
 
     //Logic for MAKING a call
     const callUser = (id) => {
-        const peer = new Peer({ initiator: true, trickle: false, stream })
+        const peer = new Peer({ initiator: true, trickle: false, stream });
 
         peer.on('signal', (data) => {
             socket.emit('callUser', { userToCall: id, signalData: data, from: me, name });
@@ -75,7 +75,7 @@ const ContextProvider = ({ children }) => {
         });
 
         connectionRef.current = peer;
-    }
+    };
 
     //Logic for LEAVING a call
     const leaveCall = () => {
@@ -84,7 +84,7 @@ const ContextProvider = ({ children }) => {
         connectionRef.current.destroy();
 
         window.location.reload();
-    }
+    };
 
     return (
         <SocketContext.Provider value={{
@@ -92,7 +92,7 @@ const ContextProvider = ({ children }) => {
         }}>
             {children}
         </SocketContext.Provider>
-    )
-}
+    );
+};
 
-export { ContextProvider, SocketContext }
+export { ContextProvider, SocketContext };
