@@ -6,7 +6,6 @@ import Conversation from '../conversations/Conversation';
 import Message from '../message/Message';
 import './leftbar.css';
 import { io } from "socket.io-client";
-
 function LeftBar() {
   const [conversations, setConversations] = useState([])
   const [currentChat, setCurrentChat] = useState(null)
@@ -16,8 +15,6 @@ function LeftBar() {
   const scrollRef = useRef();
   const { user } = useContext(AuthContext);
   const socket = useRef()
-  
-
   useEffect(()=>{
     socket.current = io("ws://localhost:8800")
     socket.current.on("getMessage", (data)=>{
@@ -28,42 +25,16 @@ function LeftBar() {
       });
     });
   },[]);
-
   useEffect(()=>{
-    arrivalMessage && 
+    arrivalMessage &&
     currentChat.member.includes(arrivalMessage.sender) && setMessages((prev) => [...prev, arrivalMessage])
   }, [arrivalMessage, currentChat]);
-
   useEffect(()=>{
     socket.current.emit("addUser", user._id);
     socket.current.on("getUsers", (users) => {
       console.log(users);
     })
   },[user]);
-
-  useEffect(() => {
-    socket.current = io("ws://localhost:8800")
-    socket.current.on("getMesage", data => {
-      setArrivalMessage({
-        sender: data.senderId,
-        text: data.text,
-        createdAt: Date.now(),
-      });
-    });
-  }, []);
-
-  useEffect(() => {
-    arrivalMessage &&
-      currentChat?.members.includes(arrivalMessage.sender) && setMessages((prev) => [...prev, arrivalMessage])
-  }, [arrivalMessage, currentChat]);
-
-  useEffect(() => {
-    socket.current.emit("addUser", user._id);
-    socket.current.on("getUsers", users => {
-      console.log(users);
-    })
-  }, [user]);
-
   useEffect(() => {
     const fetchConversations = async () => {
       try {
@@ -76,13 +47,12 @@ function LeftBar() {
     }
     fetchConversations();
   }, [user._id])
-
   useEffect(() => {
     const fetchMessages = async () => {
       try {
         const res = await axios.get("/messages/" + currentChat?._id)
         console.log(currentChat._id);
-        setMessages(res.data);       
+        setMessages(res.data);
         console.log(res);
       } catch (err) {
         console.log(err)
@@ -90,8 +60,6 @@ function LeftBar() {
     }
     fetchMessages();
   }, [currentChat]);
-
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const message = {
@@ -99,11 +67,8 @@ function LeftBar() {
       text: newMessage,
       conversationId: currentChat._id
     };
-
     const receiverId = currentChat.member.find((member) => member !== user._id)
-
     console.log(user._id)
-
     socket.current.emit("sendMessage", {
       senderId: user._id,
       receiverId,
@@ -117,12 +82,9 @@ function LeftBar() {
       console.log(err)
     }
   }
-
-  
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" })
   }, [messages])
-
   return (
     <>
       <div className='messenger'>

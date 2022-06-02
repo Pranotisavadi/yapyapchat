@@ -4,10 +4,7 @@ const io = require("socket.io")(8800, {
     methods: ["GET", "POST"]
   },
 });
-
-
 let users = [];
-
 const addUser = (userId, socketId) => {
 console.log("add user fired", users)
 console.log(userId, socketId)
@@ -15,25 +12,21 @@ console.log(userId, socketId)
   users.push({ userId, socketId });
   console.log("after push", users);
 };
-
 const removeUser = (socketId) => {
 users = users.filter((user) => user.socketId !== socketId);
 };
-
 const getUser = (userId) => {
 console.log("getUser fired", users)
 console.log("userId ", userId)
- return users.find((user) => 
+ return users.find((user) =>
     user.userId === userId
  )
 };
-
 io.on("connection", (socket) => {
 //when connected
 // console.log("this is io: ", io);
 // console.log("this is socket:", socket);
 console.log("a user connected: ");
-
 io.emit("welcome", "hello this is socket server");
 //take userId and socketId from user
 socket.on("addUser", (userId) => {
@@ -52,7 +45,6 @@ socket.on("sendMessage", ({ senderId, receiverId, text }) => {
     text,
   });
 });
-
 console.log("what is socket "+ users.socketId)
 //when disconnect
 socket.on("disconnect", () => {
@@ -61,4 +53,3 @@ socket.on("disconnect", () => {
   io.emit("getUsers", users);
 });
 });
-
