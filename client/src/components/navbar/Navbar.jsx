@@ -9,6 +9,7 @@ import ScrollDialog from '../ScrollDialog';
 
 function Navbar() {
 
+
   // const {user} =useContext(AuthContext);
   // const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 

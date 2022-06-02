@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState, useRef } from 'react';
 import axios from '../../api/axios';
 import { AuthContext } from '../../context/AuthContext';
-import ChatOnline from '../chatOnline/ChatOnline';
+// import ChatOnline from '../chatOnline/ChatOnline';
 import Conversation from '../conversations/Conversation';
 import Message from '../message/Message';
 import './leftbar.css';

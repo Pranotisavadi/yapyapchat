@@ -63,13 +63,21 @@
   }
 
   .btn {
-    background-image: url('https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png');
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    object-fit: cover;
+    /* background-image: url('https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'); */
+   
     cursor: pointer;
     border: none;
-    background-size: cover;
+    text-align: center;
+    align-items: center;
+    background-color:white;
+    padding: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    color: teal;
     
   }
+
+  /* h3 {
+    text-align: center;
+    border: 2px solid red;
+  } */
