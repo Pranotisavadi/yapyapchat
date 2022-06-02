@@ -22,12 +22,30 @@ export class Profile extends Component {
 					<div className="img-holder">
 						<img src={profileImg} alt="" id="img" className="img" />
 					</div>
+
 					<input type="file" accept="image/*" name="image-upload" id="input" onChange={this.imageHandler} />
+					{/* <button onClick={this.imageHandler}>Submit</button> */}
+
+
 					<div className="label">
           <label className="image-upload" htmlFor="input">
 						<i className="material-icons">add_photo_alternate</i>
 						Choose your Photo
 					</label>
+
+
+					{/* {profileImg && (
+          <div className="shareImgContainer">
+            <img className="shareImg" src={profileImg} alt="" />
+
+			</div>
+        )} */}
+			
+
+			
+
+        
+					
           </div>
 				</div>
 			</div>

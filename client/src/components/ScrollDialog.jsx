@@ -7,10 +7,16 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Profile from '../pages/Profile';
 import '../profile.css';
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
+
 
 
 
 export default function ScrollDialog() {
+
+    const {user} =useContext(AuthContext);
+
  
   const [open, setOpen] = React.useState(false);
   const [scroll, setScroll] = React.useState('paper');
@@ -36,7 +42,7 @@ export default function ScrollDialog() {
 
   return (
     <div>
-      <Button onClick={handleClickOpen('paper')} type="button" class="btn btn-dark"></Button>
+      <Button onClick={handleClickOpen('paper')} type="button" class="btn btn-dark">{user?.username}</Button>
       <Dialog
         open={open}
         onClose={handleClose}

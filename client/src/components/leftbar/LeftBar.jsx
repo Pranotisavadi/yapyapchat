@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState, useRef } from 'react';
 import axios from '../../api/axios';
 import { AuthContext } from '../../context/AuthContext';
-import ChatOnline from '../chatOnline/ChatOnline';
+// import ChatOnline from '../chatOnline/ChatOnline';
 import Conversation from '../conversations/Conversation';
 import Message from '../message/Message';
 import './leftbar.css';
@@ -35,6 +35,30 @@ function LeftBar() {
       console.log(users);
     })
   },[user]);
+
+  // useEffect(() => {
+  //   socket.current = io("ws://localhost:8800")
+  //   socket.current.on("getMesage", data => {
+  //     setArrivalMessage({
+  //       sender: data.senderId,
+  //       text: data.text,
+  //       createdAt: Date.now(),
+  //     });
+  //   });
+  // }, []);
+
+  // useEffect(() => {
+  //   arrivalMessage &&
+  //     currentChat?.members.includes(arrivalMessage.sender) && setMessages((prev) => [...prev, arrivalMessage])
+  // }, [arrivalMessage, currentChat]);
+
+  // useEffect(() => {
+  //   socket.current.emit("addUser", user._id);
+  //   socket.current.on("getUsers", users => {
+  //     console.log(users);
+  //   })
+  // }, [user]);
+
   useEffect(() => {
     const fetchConversations = async () => {
       try {
@@ -121,11 +145,6 @@ function LeftBar() {
                       <button className='chatSubmitButton' onClick={handleSubmit}>Send</button>
                     </div> </>
                 ) : (<span className="noConversationText">Open a conversation to start chat</span>)}
-          </div>
-        </div>
-        <div className='chatOnline'>
-          <div className="chatOnlineWrapper">
-            <ChatOnline />
           </div>
         </div>
       </div>
