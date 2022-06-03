@@ -1,39 +1,48 @@
 import React, { createContext, useState, useRef, useEffect } from 'react';
 import { io } from 'socket.io-client';
 import Peer from 'simple-peer';
+import { useContext } from 'react';
+import { AuthContext } from './context/AuthContext';
 
 //SETTING UP CONNECTION TO BACKEND SERVER
 const SocketContext = createContext('SocketContext');
-const socket = io('http://localhost:3000', {
-    withCredentials: true,
-    extraHeaders: {
-        "my-custom-header": "abcd"
-    }
-});
 
 const ContextProvider = ({ children }) => {
+    const {user} = useContext(AuthContext);
+    console.log(user)
     const [callAccepted, setCallAccepted] = useState(false);
     const [callEnded, setCallEnded] = useState(false);
     const [stream, setStream] = useState();
     const [name, setName] = useState('');
     const [call, setCall] = useState({});
     const [me, setMe] = useState('');
-
+    
     const connectionRef = useRef();
     const userVideo = useRef();
     const myVideo = useRef();
-
+    
+    // const socket = io('http://localhost:3000', {
+    //     withCredentials: true,
+    //     extraHeaders: {
+    //         "my-custom-header": "abcd"
+    //     }
+    // });
+    const socket = useRef()
+    
     useEffect(() => {
+        socket.current = io("ws://localhost:8900")
         navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((currentStream) => {
             setStream(currentStream);
 
             myVideo.current.srcObject = currentStream;
         });
 
-        socket.on('me', (id) => setMe(id));
+        socket.current.on('me', (id) => setMe(id));
 
-        socket.on('callUser', ({ from, name: callerName, signal }) => {
-            setCall({ isReceivingCall: true, from, name: callerName, signal });
+        socket.current.on('callUser', ({ from, name, signal }) => {
+            setName(name)
+            setCall({ isReceivingCall: true, from, name: name, signal });
+            console.log("setCall: ", call)
         });
     }, []);
 
@@ -44,11 +53,12 @@ const ContextProvider = ({ children }) => {
         const peer = new Peer({ initiator: false, trickle: false, stream });
 
         peer.on('signal', (data) => {
-            socket.emit('answerCall', { signal: data, to: call.from });
+            socket.current.emit('answerCall', { signal: data, to: call.from });
         });
 
         peer.on('stream', (currentStream) => {
             userVideo.current.srcObject = currentStream;
+            console.log("this is the userVideo: ", userVideo)
         });
 
         peer.signal(call.signal);
@@ -61,14 +71,14 @@ const ContextProvider = ({ children }) => {
         const peer = new Peer({ initiator: true, trickle: false, stream });
 
         peer.on('signal', (data) => {
-            socket.emit('callUser', { userToCall: id, signalData: data, from: me, name });
+            socket.current.emit('callUser', { userId: id, signalData: data, from: me, name });
         });
 
         peer.on('stream', (currentStream) => {
             userVideo.current.srcObject = currentStream;
         });
 
-        socket.on('callAccepted', (signal) => {
+        socket.current.on('callAccepted', (signal) => {
             setCallAccepted(true);
 
             peer.signal(signal);

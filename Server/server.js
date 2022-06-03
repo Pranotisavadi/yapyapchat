@@ -13,8 +13,39 @@ app.use(express.json());
 //     console.log("Backend is running")
 // })
 
-const io = new Server(server);
+//Setting up socket connection
+const io = require("socket.io")(8900, {
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"]
+  },
+});
 
+io.on('connection', (socket) => {
+  console.log("Connected to video socket")
+  socket.emit('me', socket.id);
+  console.log("socket is: " + socket.id)
+
+  socket.on("callUser", ({ userId, signalData, from, name }) => {
+    console.log("userId: " + userId)
+    io.to(userId).emit("callUser", { signal: signalData, from, name})
+  });
+
+  // socket.on("callUser", (data) => {
+  //   // console.log("caller data: ", data)
+	// 	io.to(data.userId).emit("callUser", { signal: data.signalData, from: data.from, name: data.name })
+	// })
+  
+  socket.on("answerCall", (data) => {
+    console.log("answer data: " + data)
+    io.to(data.to).emit("callAccepted", data.signal)
+  });
+
+  socket.on('disconnect', () => {
+    socket.broadcast.emit("callEnded");
+  });
+
+})
 
 app.use(cors({
   origin: "http://localhost:3000", 
@@ -46,25 +77,6 @@ db.mongoose
   app.get("/", (req, res) => {
     res.send('Server is running.')
   })
-
-  io.on('connection', (socket) => {
-    socket.emit('me', socket.id);
-
-    socket.on('disconnect', () => {
-      socket.broadcast.emit("callEnded");
-    });
-
-    socket.on("callUser", ({ userToCall, signalData, from, name }) => {
-      io.to(userToCall).emit("callUser", { signal: signalData, from, name})
-    });
-
-    socket.on("answerCall", (data) => {
-      io.to(data.to).emit("callAccepted", data.signal)
-    });
-  })
-
-  // chat socket connection
-
   
   const PORT = 8000;
 

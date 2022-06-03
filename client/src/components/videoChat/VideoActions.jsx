@@ -6,7 +6,17 @@ import { SocketContext } from '../../SocketContext';
 
 const VideoActions = ({ children }) => {
   const { me, callAccepted, name, setName, leaveCall, callEnded, callUser } = useContext(SocketContext);
+  console.log("this is me: ", me)
   const [idToCall, setIdToCall] = useState('')
+  
+  // const handleClick = () => {
+  //   callUser(idToCall);
+  //   console.log("handleClick fired")
+  // }
+
+  const onChange = (e) => {
+    setName(e.target.value)
+  }
 
   return (
     <Container className="actions-container">
@@ -15,10 +25,9 @@ const VideoActions = ({ children }) => {
           <Grid container className="grid-container">
             <Grid item xs={12} md={6} className="grid-child">
               <Typography gutterBottom variant='h6'>Account Info</Typography>
-              <TextField label="Name" value={name} onChange={(e) => setName(e.target.value)} fullWidth />
-              {console.log("this is me", me)}
+              <TextField label="Name" value={name} onChange={onChange} fullWidth />
               <CopyToClipboard text={me} className="copy-clipboard">
-                <Button variant='contained' color='primary' fullWidth startIcon={<Assignment fontSize="large" />}>
+                <Button variant='contained' className='button-start' color='primary' fullWidth startIcon={<Assignment fontSize="large" />}>
                   Copy Your ID
                 </Button>
               </CopyToClipboard>
@@ -31,7 +40,7 @@ const VideoActions = ({ children }) => {
                   Hang Up
                 </Button >
               ) : (
-                <Button variant='contained' color='primary' fullWidth startIcon={<Phone fontSize='large' />} onClick={() => callUser(idToCall)} className='button-end'>
+                <Button variant='contained' color='primary' fullWidth startIcon={<Phone fontSize='large' />} onClick={() => callUser(idToCall)} className='button-start'>
                   Call
                 </Button>
               )}
