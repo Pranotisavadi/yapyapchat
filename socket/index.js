@@ -1,6 +1,12 @@
-const io = require("socket.io")(8800, {
+const { createServer } = require("http");
+// const cors = require("cors");
+
+
+const server = createServer();
+
+const io = require("socket.io")(server, {
   cors: {
-    origin: "*",
+    origin: process.env.FRONTEND_URL,
     methods: ["GET", "POST"]
   },
 });
@@ -53,3 +59,9 @@ socket.on("disconnect", () => {
   io.emit("getUsers", users);
 });
 });
+
+const PORT = process.env.PORT || 8800
+
+server.listen (PORT, () => {
+  console.log(`this is chat sever on  ${PORT}`)
+})
