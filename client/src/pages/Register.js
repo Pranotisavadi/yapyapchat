@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import '../App.css';
-import axios from 'axios';
+import axios from './api/axios';
 import '../App.css'
 
 const Register = () => {
