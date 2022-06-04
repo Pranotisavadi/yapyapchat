@@ -22,7 +22,7 @@ const ContextProvider = ({ children }) => {
     const myVideo = useRef();
     console.log("my video: ", myVideo)
     
-  
+    
     const socket = useRef()
     
     useEffect(() => {
@@ -31,13 +31,14 @@ const ContextProvider = ({ children }) => {
         .then((currentStream) => {
             console.log(currentStream)
             setStream(currentStream);
-
+            
             myVideo.current.srcObject = currentStream;
+            console.log("my video2: ", myVideo.current.srcObject)
         })
         .catch(function (err) {
             console.log(err)
         })
-
+        console.log("my video3: ", myVideo)
         socket.current.on('me', (id) => setMe(id));
 
         socket.current.on('callUser', ({ from, name, signal }) => {
