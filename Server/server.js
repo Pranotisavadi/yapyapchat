@@ -7,6 +7,9 @@ const authRoute = require("./app/routes/auth");
 const usersRoute = require("./app/routes/users");
 const conversationsRoute = require("./app/routes/conversations");
 const messagesRoute = require("./app/routes/messages");
+require("dotenv").config();
+const path = require("path");
+
 app.use(express.json());
 
 // app.listen("8000", ()=> {
@@ -14,9 +17,9 @@ app.use(express.json());
 // })
 
 //Setting up socket connection
-const io = require("socket.io")(8900, {
+const io = require("socket.io")(server,{
   cors: {
-    origin: "http://localhost:3000",
+    origin: "*",
     methods: ["GET", "POST"]
   },
 });
@@ -48,10 +51,18 @@ io.on('connection', (socket) => {
 })
 
 app.use(cors({
-  origin: "http://localhost:3000", 
+  origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers':
+        'Origin, X-Requested-With, Content-Type, Accept',
+
   credentials :true}))
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, '/public')))
   const db = require("./app/models");
 
 
@@ -69,16 +80,16 @@ db.mongoose
   });
 
   app.use("/api/auth", authRoute);
-  app.use("/api/users", usersRoute);
+  app.use("/api/users", usersRoute)
   app.use("/api/conversations", conversationsRoute);
   app.use("/api/messages", messagesRoute);
 
 
-  app.get("/", (req, res) => {
-    res.send('Server is running.')
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname + '/public/index.html'))
   })
   
-  const PORT = 8000;
+  const PORT = process.env.PORT || 8000;
 
   server.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);

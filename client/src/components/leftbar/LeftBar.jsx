@@ -16,7 +16,7 @@ function LeftBar() {
   const { user } = useContext(AuthContext);
   const socket = useRef()
   useEffect(()=>{
-    socket.current = io("ws://localhost:8800")
+    socket.current = io(`${process.env.REACT_APP_CHATSERVER_URL}`)
     socket.current.on("getMessage", (data)=>{
       setArrivalMessage({
         sender: data.senderId,
