@@ -27,12 +27,16 @@ const ContextProvider = ({ children }) => {
     
     useEffect(() => {
         socket.current = io(`${process.env.REACT_APP_VIDEOSERVER_URL}`)
-        navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((currentStream) => {
-            console.log("current stream: ", currentStream)
+        navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+        .then((currentStream) => {
+            console.log(currentStream)
             setStream(currentStream);
 
             myVideo.current.srcObject = currentStream;
-        });
+        })
+        .catch(function (err) {
+            console.log(err)
+        })
 
         socket.current.on('me', (id) => setMe(id));
 
