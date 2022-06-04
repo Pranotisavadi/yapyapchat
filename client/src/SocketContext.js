@@ -20,6 +20,7 @@ const ContextProvider = ({ children }) => {
     const connectionRef = useRef();
     const userVideo = useRef();
     const myVideo = useRef();
+    console.log("my video: ", myVideo)
     
   
     const socket = useRef()
@@ -27,6 +28,7 @@ const ContextProvider = ({ children }) => {
     useEffect(() => {
         socket.current = io(`${process.env.REACT_APP_VIDEOSERVER_URL}`)
         navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((currentStream) => {
+            console.log("current stream: ", currentStream)
             setStream(currentStream);
 
             myVideo.current.srcObject = currentStream;

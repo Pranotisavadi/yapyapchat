@@ -11,7 +11,7 @@ export default function Conversation({conversation, currentUser}) {
     const res = await axios.get("/users?userId="+ friendId);
     setUser(res.data)
     // console.log(user)
-    console.log(res)
+    // console.log(res)
   } catch(err){
     console.log(err)
   }
