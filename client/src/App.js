@@ -6,7 +6,6 @@ import HomeChat from './pages/HomeChat';
 import VideoChat from './pages/VideoChat';
 import Navbar from './components/navbar/Navbar';
 import { ContextProvider } from './SocketContext'
-// import {  AuthProvider } from './context/AuthProvider';
 import { useContext } from 'react';
 import { AuthContext } from './context/AuthContext';
 function App() {

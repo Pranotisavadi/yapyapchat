@@ -42,7 +42,7 @@ export default function ScrollDialog() {
 
   return (
     <div>
-      <Button onClick={handleClickOpen('paper')} type="button" class="btn btn-dark">{user?.username}</Button>
+      <Button onClick={handleClickOpen('paper')} type="button" className="btn btn-dark">{user?.username}</Button>
       <Dialog
         open={open}
         onClose={handleClose}
