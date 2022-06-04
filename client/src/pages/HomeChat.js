@@ -12,7 +12,7 @@ function HomeChat() {
     }
 
     return (
-            <ThemeContext.Provider>
+            <ThemeContext.Provider value={{}}>
                 <div id={theme}>
                     <div className='switch'>
                         <label> {theme === "light" ? "Light Mode" : "Dark Mode"}</label>
