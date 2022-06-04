@@ -74,7 +74,7 @@ function LeftBar() {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const res = await axios.get("/messages/" + currentChat?._id)
+        const res = await axios.get("/messages/" + currentChat._id)
         console.log(currentChat._id);
         setMessages(res.data);
         console.log(res);
