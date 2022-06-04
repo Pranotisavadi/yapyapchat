@@ -25,7 +25,7 @@ const ContextProvider = ({ children }) => {
     const socket = useRef()
     
     useEffect(() => {
-        socket.current = io("ws://localhost:8900")
+        socket.current = io(`${prcess.env.REACT_APP_VIDEOSERVER_URL}`)
         navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((currentStream) => {
             setStream(currentStream);
 
