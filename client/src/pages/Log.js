@@ -37,7 +37,6 @@ if (user) return window.location.replace("/homechat");
             autoComplete="password"
             required
             placeholder="Enter your password..."
-            minLength="6"
             ref={password}
             // onChange={(e) => setPassword(e.target.value)}
             // value={password}
